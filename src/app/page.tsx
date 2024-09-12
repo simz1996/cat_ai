@@ -5,7 +5,10 @@ export const dynamic = 'force-dynamic';
 
 
 export default async function HomePage() {
-  const images = await db.query.images.findMany();
+  const images = await db.query.images.findMany({
+
+    orderBy: (model, { desc }) => [desc(model.id)],
+  });
 
 
   
@@ -14,8 +17,12 @@ export default async function HomePage() {
       <div className="flex flex-wrap gap-4">
        
         {images.map((image, index) => (
-          <div key={`${image.id}-${index}`} className="w-48">
+          <div key={image.id + "-"+ index} className="flex w-48 flex-col">
             <img src={image.url} alt={`Image ${image.id}`} />
+            <div>
+              <p>{image.id}</p>
+              <p>{image.wechat_id}</p>
+            </div>
           </div>
         ))}
       </div>
