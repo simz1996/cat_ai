@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import "~/styles/globals.css";
@@ -23,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.variable}>
-      <body className="font-sans flex flex-col gap-4">
-        <TopNav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={GeistSans.variable}>
+    <body className="font-sans flex flex-col gap-4">
+      <TopNav />
+      {children}
+    </body>
+      </html>
+    </ClerkProvider>
   );
 }
