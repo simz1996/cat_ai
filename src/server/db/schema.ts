@@ -24,7 +24,7 @@ export const images = createTable(
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
     url: varchar("url", { length: 1024 }).notNull(),
-    wechat_id: varchar("wechat_1d", { length: 600 }).notNull(),
+    wechat_id: varchar("wechat_id", { length: 600 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
