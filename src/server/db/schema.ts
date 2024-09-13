@@ -25,6 +25,10 @@ export const images = createTable(
     name: varchar("name", { length: 256 }).notNull(),
     url: varchar("url", { length: 1024 }).notNull(),
     wechat_id: varchar("wechat_id", { length: 600 }).notNull(),
+
+    userId: varchar("userId", { length: 256 }).notNull(),
+
+
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -36,3 +40,4 @@ export const images = createTable(
     nameIndex: index("name_idx").on(example.name),
   })
 );
+ 
