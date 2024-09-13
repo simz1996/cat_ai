@@ -31,7 +31,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className="font-sans flex flex-col gap-4">
+        <body className="flex flex-col gap-4 font-sans">
           <TopNav />
           {children}
         </body>
