@@ -3,10 +3,10 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import "@uploadthing/react/styles.css";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import { extractRouterConfig } from "uploadthing/server";
 import "~/styles/globals.css";
 import { TopNav } from "./_components/topnav";
 import { ourFileRouter } from "./api/uploadthing/core";
-
 
 export const metadata: Metadata = {
   title: "CAT_AI",
@@ -14,22 +14,15 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  function extractRouterConfig(ourFileRouter: any): import("uploadthing/types").EndpointMetadata {
-    throw new Error("Function not implemented.");
-  }
-
   return (
     <ClerkProvider>
-      
       <html lang="en" className={GeistSans.variable}>
-      <NextSSRPlugin
+        <NextSSRPlugin
           /**
            * The `extractRouterConfig` will extract **only** the route configs
            * from the router to prevent additional information from being
@@ -38,10 +31,10 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-    <body className="font-sans flex flex-col gap-4">
-      <TopNav />
-      {children}
-    </body>
+        <body className="font-sans flex flex-col gap-4">
+          <TopNav />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
