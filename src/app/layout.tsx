@@ -6,6 +6,7 @@ import { type Metadata } from "next";
 import { extractRouterConfig } from "uploadthing/server";
 import { Toaster } from "~/components/ui/sonner";
 import "~/styles/globals.css";
+import { CSPostHogProvider } from "./_analytics/provider";
 import { TopNav } from "./_components/topnav";
 import { ourFileRouter } from "./api/uploadthing/core";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+      <CSPostHogProvider>
       <html lang="en" className={GeistSans.variable}>
         <NextSSRPlugin
           /**
@@ -47,6 +49,7 @@ export default function RootLayout({
           <Toaster />
         </body>
       </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }
