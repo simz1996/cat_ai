@@ -4,9 +4,11 @@ import "@uploadthing/react/styles.css";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { extractRouterConfig } from "uploadthing/server";
+import { Toaster } from "~/components/ui/sonner";
 import "~/styles/globals.css";
 import { TopNav } from "./_components/topnav";
 import { ourFileRouter } from "./api/uploadthing/core";
+
 
 
 export const metadata: Metadata = {
@@ -42,6 +44,7 @@ export default function RootLayout({
           </div>
           {modal} 
           <div id="modal-root" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
