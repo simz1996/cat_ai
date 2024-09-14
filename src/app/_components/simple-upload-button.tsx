@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation";
+import posthog from 'posthog-js';
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useUploadThing } from "~/utils/uploadthing";
@@ -74,6 +75,11 @@ export function SimpleUploadButton() {
                     id: "upload-begin"
                 }
             );
+        },
+        onUploadError: (error) => {
+            posthog.capture("upload-error", { error });
+            toast.dismiss("upload-begin");
+            toast.error("Upload Failed")
         },
         onClientUploadComplete: () => { 
             toast.dismiss("upload-begin");
